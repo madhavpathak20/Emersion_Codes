@@ -1,0 +1,33 @@
+import java.util.Scanner;
+
+public class RemoveCharsInSecondString {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Input first string
+        System.out.print("Enter first string (S1): ");
+        String s1 = sc.nextLine();
+
+        // Input second string
+        System.out.print("Enter second string (S2): ");
+        String s2 = sc.nextLine();
+
+        StringBuilder result = new StringBuilder();
+
+        // Convert S2 into a set of characters for quick lookup
+        boolean[] present = new boolean[256]; // ASCII size
+
+        for (int i = 0; i < s2.length(); i++) {
+            present[s2.charAt(i)] = true;
+        }
+
+        // Build result string excluding chars from S2
+        for (int i = 0; i < s1.length(); i++) {
+            if (!present[s1.charAt(i)]) {
+                result.append(s1.charAt(i));
+            }
+        }
+
+        System.out.println("Output: " + result.toString());
+    }
+}

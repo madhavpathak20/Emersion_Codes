@@ -1,0 +1,35 @@
+import java.util.*;
+
+public class Main {
+    static int countRepeats(String word) {
+        int[] freq = new int[26];
+        for (char c : word.toCharArray()) {
+            if (Character.isLetter(c)) {
+                freq[Character.toLowerCase(c) - 'a']++;
+            }
+        }
+
+        int maxRepeat = 0;
+        for (int count : freq) {
+            if (count > 1) maxRepeat += count;
+        }
+        return maxRepeat;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String[] words = sc.nextLine().split(" ");
+
+        int max = 0;
+        String result = "";
+        for (String word : words) {
+            int repeat = countRepeats(word);
+            if (repeat > max) {
+                max = repeat;
+                result = word;
+            }
+        }
+
+        System.out.println(result);
+    }
+}
